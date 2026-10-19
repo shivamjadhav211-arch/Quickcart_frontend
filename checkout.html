@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickCart | Checkout</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+    <header class="navbar"><a class="logo" href="index1.html">🛒 QuickCart</a><a href="products.html">← Continue
+            Shopping</a></header>
+    <main class="checkout-page">
+        <h1>Checkout 🛒</h1>
+        <div class="checkout-layout">
+            <section class="delivery-card">
+                <h2>📍 Delivery Details</h2>
+                <form id="checkoutForm">
+                    <label for="fullName">Full Name</label><input id="fullName" required
+                        placeholder="Enter your full name">
+                    <label for="mobile">Mobile Number</label><input id="mobile" type="tel" pattern="[0-9]{10}"
+                        maxlength="10" required placeholder="10-digit mobile number">
+                    <label for="address">Delivery Address</label><textarea id="address" rows="3" required
+                        placeholder="Complete address"></textarea>
+                    <label for="city">City</label><input id="city" required placeholder="Enter your city">
+                    <label for="pincode">PIN Code</label><input id="pincode" pattern="[0-9]{6}" maxlength="6" required
+                        placeholder="6-digit PIN code">
+                    <h2 class="payment-heading">💳 Payment Method</h2><label class="payment-option"><input type="radio"
+                            name="payment" value="cod" checked> Cash on Delivery</label><label
+                        class="payment-option"><input type="radio" name="payment" value="upi"> UPI</label><label
+                        class="payment-option"><input type="radio" name="payment" value="card"> Credit / Debit
+                        Card</label>
+                    <button type="submit" id="placeOrderBtn" class="place-order-btn">Place Order →</button>
+                    <div id="checkoutMessage" role="status" aria-live="polite"></div>
+                </form>
+            </section>
+            <aside class="checkout-summary">
+                <h2>Order Summary</h2>
+                <div id="checkoutItems"></div>
+                <p id="emptyCheckout" hidden>Your cart is empty. <a href="products.html">Shop now</a></p>
+                <hr>
+                <div class="checkout-row"><span>Subtotal</span><strong id="checkoutSubtotal">₹0.00</strong></div>
+                <div class="checkout-row"><span>Delivery Fee</span><strong id="checkoutDelivery">₹0.00</strong></div>
+                <div class="checkout-row"><span>Discount</span><strong id="checkoutDiscount">- ₹0.00</strong></div>
+                <hr>
+                <div class="checkout-total"><span>Total</span><strong id="checkoutTotal">₹0.00</strong></div>
+            </aside>
+        </div>
+    </main>
+    <footer>
+        <h2>🛒 QuickCart</h2>
+        <p>Your everyday grocery delivery partner.</p>
+        <p>© 2026 QuickCart</p>
+    </footer>
+    <script>
+        const CART_KEY = "quickCart", ORDER_KEY = "quickCartOrder"; let cartItems = [], busy = false; const $ = id => document.getElementById(id); const money = n => "₹" + Number(n).toFixed(2);
+        function loadCart() { try { const a = JSON.parse(localStorage.getItem(CART_KEY) || "[]"); cartItems = Array.isArray(a) ? a.filter(i => i && typeof i.name === "string" && Number(i.price) >= 0 && Number.isInteger(Number(i.quantity)) && Number(i.quantity) > 0).map(i => ({ name: i.name, price: Number(i.price), quantity: Number(i.quantity) })) : [] } catch (e) { cartItems = []; console.error(e) } }
+        function totals() { const subtotal = cartItems.reduce((s, i) => s + i.price * i.quantity, 0), delivery = subtotal > 0 && subtotal < 300 ? 30 : 0, discount = subtotal >= 500 ? 50 : 0; return { subtotal, delivery, discount, total: subtotal + delivery - discount } }
+        function render() { const box = $("checkoutItems"); box.replaceChildren(); cartItems.forEach(i => { const row = document.createElement("div"); row.className = "checkout-product"; const name = document.createElement("span"); name.textContent = `${i.name} × ${i.quantity}`; const price = document.createElement("strong"); price.textContent = money(i.price * i.quantity); row.append(name, price); box.append(row) }); $("emptyCheckout").hidden = cartItems.length > 0; const t = totals(); $("checkoutSubtotal").textContent = money(t.subtotal); $("checkoutDelivery").textContent = money(t.delivery); $("checkoutDiscount").textContent = "- " + money(t.discount); $("checkoutTotal").textContent = money(t.total); $("placeOrderBtn").disabled = busy || cartItems.length === 0 }
+        $("checkoutForm").addEventListener("submit", async e => {
+            e.preventDefault(); if (busy) return; if (!cartItems.length) { $("checkoutMessage").className = "error-message"; $("checkoutMessage").textContent = "Your cart is empty. Add products before ordering."; return } if (!e.currentTarget.reportValidity()) return;
+            const payment = document.querySelector('input[name="payment"]:checked'); const order = { customerName: $("fullName").value.trim(), mobile: $("mobile").value.trim(), address: $("address").value.trim() + ", " + $("city").value.trim() + ", PIN: " + $("pincode").value.trim(), items: cartItems, paymentMethod: payment ? payment.value : "cod" };
+            busy = true; $("placeOrderBtn").disabled = true; $("checkoutMessage").className = ""; $("checkoutMessage").textContent = "Placing your order…";
+            try {
+                const response = await fetch("http://localhost:3000/api/orders", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(order) }); let data; try { data = await response.json() } catch { throw Error("Backend did not return JSON. Check server.js.") } if (!response.ok || data.success !== true || !data.order) throw Error(data.message || "Order was not confirmed.");
+                const id = data.order.orderId; if (!id) throw Error("Order ID missing in backend response."); localStorage.setItem(ORDER_KEY, id); localStorage.setItem("quickCartLastOrder", JSON.stringify(data.order)); localStorage.removeItem(CART_KEY); $("checkoutMessage").className = "success-message"; $("checkoutMessage").textContent = "Order placed successfully! Order ID: " + id + ". Opening confirmation…"; $("placeOrderBtn").textContent = "Order Placed ✓"; $("placeOrderBtn").disabled = true; setTimeout(() => { window.location.assign("order-success.html") }, 700);
+            } catch (err) { console.error("Place order error:", err); $("checkoutMessage").className = "error-message"; const detail = (err instanceof TypeError) ? "Cannot connect to QuickCart backend. Start the backend with npm start in the backend folder, then retry." : err.message; $("checkoutMessage").textContent = "Could not place order: " + detail + " If you are unsure whether the order was saved, check Orders before submitting again."; busy = false; $("placeOrderBtn").disabled = cartItems.length === 0; $("placeOrderBtn").textContent = "Place Order →" }
+        }); loadCart(); render();
+    </script>
+</body>
+
+</html>

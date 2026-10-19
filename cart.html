@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickCart | My Cart</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="navbar"><a class="logo" href="index1.html">🛒 QuickCart</a><a href="products.html">Continue
+            Shopping</a></header>
+    <main class="section">
+        <h1>My Cart</h1>
+        <div id="cartItems" class="cart-list"></div>
+        <div id="cartEmpty" class="empty-state" hidden>Your cart is empty. <a href="products.html">Shop now</a></div>
+        <aside class="cart-summary">
+            <h2>Order Summary</h2>
+            <p>Subtotal <strong id="cartSubtotal">₹0</strong></p>
+            <p>Delivery Fee <strong id="cartDelivery">₹0</strong></p>
+            <p>Discount <strong id="cartDiscount">- ₹0</strong></p>
+            <hr>
+            <h2>Total <span id="cartTotal">₹0</span></h2><button id="checkoutBtn" class="btn"
+                onclick="goToCheckout()">Proceed to Checkout →</button>
+        </aside>
+    </main>
+    <footer>
+        <h2>🛒 QuickCart</h2>
+        <p>Your everyday grocery delivery partner.</p>
+        <p>© 2026 QuickCart</p>
+    </footer>
+    <script src="script.js"></script>
+    <script>renderCartPage();</script>
+</body>
+
+</html>

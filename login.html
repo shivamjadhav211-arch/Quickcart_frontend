@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickCart | Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="navbar"><a class="logo" href="index1.html">🛒 QuickCart</a><a href="index1.html">Home</a></header>
+    <main class="auth-card">
+        <h1>Welcome back</h1>
+        <p>Login to your QuickCart account.</p>
+        <form id="loginForm"><label>Mobile Number</label><input id="loginMobile" type="tel" pattern="[0-9]{10}"
+                maxlength="10" required placeholder="10-digit mobile number"><label>Password</label><input
+                id="loginPassword" type="password" required placeholder="Password"><button class="btn"
+                type="submit">Login</button></form>
+        <p>New here? <a href="signup.html">Create an account</a></p><button class="btn secondary"
+            onclick="continueAsGuest()">Continue as Guest</button>
+        <p id="authMessage"></p>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>

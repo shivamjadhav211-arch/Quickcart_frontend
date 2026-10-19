@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickCart | Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="navbar"><a class="logo" href="index1.html">🛒 QuickCart</a><a href="index1.html">Home</a></header>
+    <main class="auth-card">
+        <h1>Create account</h1>
+        <form id="signupForm"><label>Full Name</label><input id="signupName" required
+                placeholder="Full name"><label>Mobile Number</label><input id="signupMobile" type="tel"
+                pattern="[0-9]{10}" maxlength="10" required placeholder="10-digit mobile"><label>Email</label><input
+                id="signupEmail" type="email" required placeholder="Email address"><label>Password</label><input
+                id="signupPassword" type="password" minlength="6" required
+                placeholder="At least 6 characters"><label>Confirm Password</label><input id="confirmPassword"
+                type="password" minlength="6" required placeholder="Confirm password"><button class="btn"
+                type="submit">Create Account</button></form>
+        <p>Already have an account? <a href="login.html">Login</a></p>
+        <p id="authMessage"></p>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>

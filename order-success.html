@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickCart | Order Successful</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="navbar"><a class="logo" href="index1.html">🛒 QuickCart</a></header>
+    <main class="success-page">
+        <div class="success-card">
+            <div class="success-icon">✓</div>
+            <h1>Order Placed Successfully!</h1>
+            <p>Thank you for shopping with QuickCart.</p>
+            <p>Your groceries are being prepared.</p>
+            <div class="order-info">
+                <h3>Order Details</h3>
+                <p>Order ID: <strong id="orderId">QC000000</strong></p>
+                <p>Estimated Delivery: <strong>20–30 minutes</strong></p>
+                <div id="successItems"></div>
+            </div>
+            <div class="success-buttons"><a href="products.html" class="btn">Continue Shopping</a><a href="index1.html"
+                    class="btn secondary">Back to Home</a></div>
+        </div>
+    </main>
+    <footer>
+        <h2>🛒 QuickCart</h2>
+        <p>Your everyday grocery delivery partner.</p>
+        <p>© 2026 QuickCart</p>
+    </footer>
+    <script>
+        const id = localStorage.getItem('quickCartOrder'); if (id) document.getElementById('orderId').textContent = id;
+        try { const order = JSON.parse(localStorage.getItem('quickCartLastOrder') || 'null'); if (order && Array.isArray(order.items)) document.getElementById('successItems').innerHTML = '<p>Items: ' + order.items.map(i => `${i.name} × ${i.quantity}`).join(', ') + '</p>'; } catch (e) { }
+    </script>
+</body>
+
+</html>

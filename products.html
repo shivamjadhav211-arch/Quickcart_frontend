@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickCart | Products</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+    <header class="navbar"><a class="logo" href="index1.html"><i class="fa-solid fa-basket-shopping"></i>
+            QuickCart</a><input id="productSearch" class="search" placeholder="Search for products...">
+        <nav><a href="index1.html">Home</a><a href="login.html">Login</a><a href="cart.html">Cart <span
+                    id="cartCount">0</span></a></nav>
+    </header>
+    <main class="section">
+        <div class="section-head">
+            <div>
+                <p class="eyebrow">FRESH FINDS</p>
+                <h1>All groceries</h1>
+            </div>
+            <p>Pick your everyday essentials.</p>
+        </div>
+        <div class="filters"><button class="filter-btn active" data-category="all">All</button><button
+                class="filter-btn" data-category="fruits">Fruits</button><button class="filter-btn"
+                data-category="vegetables">Vegetables</button><button class="filter-btn"
+                data-category="dairy">Dairy</button><button class="filter-btn"
+                data-category="snacks">Snacks</button><button class="filter-btn"
+                data-category="drinks">Drinks</button><button class="filter-btn" data-category="bakery">Bakery</button>
+        </div>
+        <div class="product-grid" id="productGrid">
+            <article class="product-card product" data-category="fruits" data-name="Fresh Apples">
+                <div class="product-emoji">🍎</div>
+                <h3>Fresh Apples</h3>
+                <p>₹120 / pack</p><button class="btn add-btn" data-name="Fresh Apples" data-price="120">Add to
+                    Cart</button>
+            </article>
+            <article class="product-card product" data-category="fruits" data-name="Bananas">
+                <div class="product-emoji">🍌</div>
+                <h3>Bananas</h3>
+                <p>₹60 / dozen</p><button class="btn add-btn" data-name="Bananas" data-price="60">Add to Cart</button>
+            </article>
+            <article class="product-card product" data-category="fruits" data-name="Oranges">
+                <div class="product-emoji">🍊</div>
+                <h3>Oranges</h3>
+                <p>₹90 / pack</p><button class="btn add-btn" data-name="Oranges" data-price="90">Add to Cart</button>
+            </article>
+            <article class="product-card product" data-category="vegetables" data-name="Fresh Tomatoes">
+                <div class="product-emoji">🍅</div>
+                <h3>Fresh Tomatoes</h3>
+                <p>₹50 / pack</p><button class="btn add-btn" data-name="Fresh Tomatoes" data-price="50">Add to
+                    Cart</button>
+            </article>
+            <article class="product-card product" data-category="vegetables" data-name="Fresh Broccoli">
+                <div class="product-emoji">🥦</div>
+                <h3>Fresh Broccoli</h3>
+                <p>₹70 / piece</p><button class="btn add-btn" data-name="Fresh Broccoli" data-price="70">Add to
+                    Cart</button>
+            </article>
+            <article class="product-card product" data-category="vegetables" data-name="Fresh Carrots">
+                <div class="product-emoji">🥕</div>
+                <h3>Fresh Carrots</h3>
+                <p>₹45 / pack</p><button class="btn add-btn" data-name="Fresh Carrots" data-price="45">Add to
+                    Cart</button>
+            </article>
+            <article class="product-card product" data-category="dairy" data-name="Fresh Milk">
+                <div class="product-emoji">🥛</div>
+                <h3>Fresh Milk</h3>
+                <p>₹60 / bottle</p><button class="btn add-btn" data-name="Fresh Milk" data-price="60">Add to
+                    Cart</button>
+            </article>
+            <article class="product-card product" data-category="dairy" data-name="Cheese">
+                <div class="product-emoji">🧀</div>
+                <h3>Cheese</h3>
+                <p>₹110 / pack</p><button class="btn add-btn" data-name="Cheese" data-price="110">Add to Cart</button>
+            </article>
+            <article class="product-card product" data-category="dairy" data-name="Fresh Yogurt">
+                <div class="product-emoji">🥣</div>
+                <h3>Fresh Yogurt</h3>
+                <p>₹40 / cup</p><button class="btn add-btn" data-name="Fresh Yogurt" data-price="40">Add to
+                    Cart</button>
+            </article>
+            <article class="product-card product" data-category="snacks" data-name="Chocolate Cookies">
+                <div class="product-emoji">🍪</div>
+                <h3>Chocolate Cookies</h3>
+                <p>₹80 / pack</p><button class="btn add-btn" data-name="Chocolate Cookies" data-price="80">Add to
+                    Cart</button>
+            </article>
+            <article class="product-card product" data-category="snacks" data-name="Potato Chips">
+                <div class="product-emoji">🍟</div>
+                <h3>Potato Chips</h3>
+                <p>₹30 / pack</p><button class="btn add-btn" data-name="Potato Chips" data-price="30">Add to
+                    Cart</button>
+            </article>
+            <article class="product-card product" data-category="snacks" data-name="Milk Chocolate">
+                <div class="product-emoji">🍫</div>
+                <h3>Milk Chocolate</h3>
+                <p>₹55 / bar</p><button class="btn add-btn" data-name="Milk Chocolate" data-price="55">Add to
+                    Cart</button>
+            </article>
+            <article class="product-card product" data-category="drinks" data-name="Cold Drink">
+                <div class="product-emoji">🥤</div>
+                <h3>Cold Drink</h3>
+                <p>₹45 / bottle</p><button class="btn add-btn" data-name="Cold Drink" data-price="45">Add to
+                    Cart</button>
+            </article>
+            <article class="product-card product" data-category="drinks" data-name="Orange Juice">
+                <div class="product-emoji">🧃</div>
+                <h3>Orange Juice</h3>
+                <p>₹75 / bottle</p><button class="btn add-btn" data-name="Orange Juice" data-price="75">Add to
+                    Cart</button>
+            </article>
+            <article class="product-card product" data-category="drinks" data-name="Mineral Water">
+                <div class="product-emoji">💧</div>
+                <h3>Mineral Water</h3>
+                <p>₹20 / bottle</p><button class="btn add-btn" data-name="Mineral Water" data-price="20">Add to
+                    Cart</button>
+            </article>
+            <article class="product-card product" data-category="bakery" data-name="Fresh Bread">
+                <div class="product-emoji">🍞</div>
+                <h3>Fresh Bread</h3>
+                <p>₹40 / loaf</p><button class="btn add-btn" data-name="Fresh Bread" data-price="40">Add to
+                    Cart</button>
+            </article>
+            <article class="product-card product" data-category="bakery" data-name="Butter Croissant">
+                <div class="product-emoji">🥐</div>
+                <h3>Butter Croissant</h3>
+                <p>₹65 / piece</p><button class="btn add-btn" data-name="Butter Croissant" data-price="65">Add to
+                    Cart</button>
+            </article>
+            <article class="product-card product" data-category="bakery" data-name="Chocolate Cake">
+                <div class="product-emoji">🍰</div>
+                <h3>Chocolate Cake</h3>
+                <p>₹250 / cake</p><button class="btn add-btn" data-name="Chocolate Cake" data-price="250">Add to
+                    Cart</button>
+            </article>
+            <article class="product-card product" data-category="dairy" data-name="Fresh Eggs">
+                <div class="product-emoji">🥚</div>
+                <h3>Fresh Eggs</h3>
+                <p>₹90 / dozen</p><button class="btn add-btn" data-name="Fresh Eggs" data-price="90">Add to
+                    Cart</button>
+            </article>
+            <article class="product-card product" data-category="snacks" data-name="Natural Honey">
+                <div class="product-emoji">🍯</div>
+                <h3>Natural Honey</h3>
+                <p>₹180 / jar</p><button class="btn add-btn" data-name="Natural Honey" data-price="180">Add to
+                    Cart</button>
+            </article>
+        </div>
+        <p id="noProducts" hidden>No products found.</p>
+    </main>
+    <footer>
+        <h2>🛒 QuickCart</h2>
+        <p>Your everyday grocery delivery partner.</p>
+        <p>© 2026 QuickCart</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>

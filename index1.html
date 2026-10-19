@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickCart | Fresh Groceries</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+  <header class="navbar">
+    <a class="logo" href="index1.html"><i class="fa-solid fa-basket-shopping"></i> QuickCart</a>
+    <div class="location"><small>Deliver to</small><strong>Your Location</strong></div>
+    <input id="searchInput" class="search" placeholder="Search for groceries..." aria-label="Search products">
+    <nav><a href="products.html">Products</a><a href="login.html">Login</a><a href="cart.html">Cart <span
+          id="cartCount">0</span></a></nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">FRESH • FAST • AFFORDABLE</p>
+        <h1>Groceries delivered<br><span>to your doorstep.</span></h1>
+        <p>Fresh fruits, vegetables, dairy and everyday essentials at your fingertips.</p>
+        <a class="btn" href="products.html">Shop groceries <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="hero-art" aria-label="Grocery basket illustration">
+        <span>🍎</span><span>🥦</span><span>🥛</span><span>🍪</span><strong>Fresh picks<br>every day!</strong></div>
+    </section>
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">SHOP BY CATEGORY</p>
+          <h2>What do you need today?</h2>
+        </div><a href="products.html">View all →</a>
+      </div>
+      <div class="category-grid">
+        <a class="category fruit" href="products.html?category=fruits">🍎<strong>Fruits</strong></a>
+        <a class="category veg" href="products.html?category=vegetables">🥦<strong>Vegetables</strong></a>
+        <a class="category dairy" href="products.html?category=dairy">🥛<strong>Dairy</strong></a>
+        <a class="category snacks" href="products.html?category=snacks">🍪<strong>Snacks</strong></a>
+      </div>
+    </section>
+    <section class="section feature-strip">
+      <div>🚚 <strong>Fast delivery</strong><small>Quick doorstep delivery</small></div>
+      <div>🥬 <strong>Fresh quality</strong><small>Everyday essentials</small></div>
+      <div>💚 <strong>Great value</strong><small>Simple, fair prices</small></div>
+    </section>
+  </main>
+  <footer>
+    <h2>🛒 QuickCart</h2>
+    <p>Your everyday grocery delivery partner.</p>
+    <p>© 2026 QuickCart</p>
+  </footer>
+  <script src="script.js"></script>
+  <script>
+    const homeSearch = document.getElementById('searchInput');
+    if (homeSearch) homeSearch.addEventListener('keydown', e => { if (e.key === 'Enter') { localStorage.setItem('quickCartSearch', homeSearch.value); location.href = 'products.html'; } });
+  </script>
+</body>
+
+</html>
